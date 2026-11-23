@@ -1,0 +1,192 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#081522">
+
+    <title>{% block title %}BOOM EXPRESS | Premium Technical Services{% endblock %}</title>
+
+    <meta name="description" content="{% block meta_description %}BOOM EXPRESS delivers professional technical and property improvement services with precision, thoughtful execution and attention to detail.{% endblock %}">
+
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BOOM EXPRESS Technical Services">
+    <meta property="og:title" content="{% block og_title %}BOOM EXPRESS | Premium Technical Services{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Professional technical solutions and property improvement services delivered with precision.{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/boom-express-technicians-hero.webp' %}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/boom-express-technicians-hero.webp' %}">
+    <meta name="twitter:title" content="{% block twitter_title %}BOOM EXPRESS | Premium Technical Services{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Professional technical solutions and property improvement services.{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="alternate icon" href="{% static 'images/favicon.svg' %}">
+
+    <!-- Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20261121-contactfix">
+
+    {% block extra_css %}{% endblock %}
+    {% block extra_head %}{% endblock %}
+
+    <!-- Organization structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BOOM EXPRESS TECHNICAL SERVICES L.L.C.",
+        "url": "{{ request.scheme }}://{{ request.get_host }}/",
+        "telephone": "+971 52 512 2024",
+        "email": "jhuriyanarendra15@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Office A18-01-1, Oud Metha, Bur Dubai",
+            "addressLocality": "Dubai",
+            "addressCountry": "AE"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+971 52 512 2024",
+            "email": "jhuriyanarendra15@gmail.com",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <div class="site-wrapper">
+
+        <header class="site-header" id="site-header">
+            <div class="container header-inner">
+
+                <a href="{% url 'core:home' %}" class="brand" aria-label="BOOM EXPRESS home">
+                    <span class="brand-mark">B</span>
+                    <span class="brand-copy">
+                        <strong>OOM EXPRESS</strong>
+                        <small>TECHNICAL SERVICES</small>
+                    </span>
+                </a>
+
+                <button class="menu-toggle"
+                        type="button"
+                        aria-label="Open navigation"
+                        aria-expanded="false"
+                        aria-controls="primary-navigation">
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
+                    <a href="{% url 'core:home' %}">Home</a>
+                    <a href="{% url 'core:about' %}">About</a>
+                    <a href="{% url 'core:services' %}">Services</a>
+                    <a href="{% url 'core:industries' %}">Industries</a>
+                    <a href="{% url 'core:projects' %}">Projects</a>
+                    <a href="{% url 'core:blog_list' %}">Insights</a>
+                    <a href="{% url 'core:faqs' %}">FAQs</a>
+                    <a href="{% url 'core:contact' %}">Contact</a>
+
+                    <a href="{% url 'core:home' %}#contact" class="header-cta">
+                        Let's Talk <span aria-hidden="true">&#8599;</span>
+                    </a>
+                </nav>
+
+            </div>
+        </header>
+
+        <main id="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+
+                <div class="footer-main">
+
+                    <div class="footer-brand">
+                        <a href="{% url 'core:home' %}" class="brand">
+                            <span class="brand-mark">B</span>
+                            <span class="brand-copy">
+                                <strong>OOM EXPRESS</strong>
+                                <small>TECHNICAL SERVICES</small>
+                            </span>
+                        </a>
+
+                        <p>
+                            Thoughtful technical solutions, precise workmanship
+                            and a commitment to quality in every detail.
+                        </p>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Explore</h3>
+                        <a href="{% url 'core:about' %}">About Us</a>
+                        <a href="{% url 'core:services' %}">Our Services</a>
+                        <a href="{% url 'core:industries' %}">Industries</a>
+                        <a href="{% url 'core:projects' %}">Projects</a>
+                        <a href="{% url 'core:blog_list' %}">Insights</a>
+                        <a href="{% url 'core:faqs' %}">Frequently Asked Questions</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Our Approach</h3>
+                        <a href="{% url 'core:about' %}">Our Approach</a>
+                        <a href="{% url 'core:faqs' %}">FAQs</a>
+                        <a href="{% url 'core:contact' %}">Request an Enquiry</a>
+                    </div>
+
+                    <div class="footer-column footer-contact">
+                        <h3>Get in Touch</h3>
+                        <p>Have a project in mind?</p>
+                        {% if company_profile.phone %}
+                        <a href="tel:{{ company_profile.phone|cut:' ' }}" class="footer-email">{{ company_profile.phone }}</a>
+                        {% endif %}
+                        {% if company_profile.email %}
+                        <a href="mailto:{{ company_profile.email }}" class="footer-email">{{ company_profile.email }}</a>
+                        {% endif %}
+                        {% if company_profile.address %}
+                        <p>{{ company_profile.address }}</p>
+                        {% endif %}
+                        <a href="{% url 'core:contact' %}" class="footer-email">
+                            Send an Enquiry &#8599;
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&#169; {% now "Y" %} BOOM EXPRESS Technical Services. All rights reserved.</p>
+                    <p>Designed with precision.</p>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="{% static 'js/main.js' %}" defer></script>
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>
+

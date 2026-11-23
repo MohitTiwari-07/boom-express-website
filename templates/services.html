@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% block title %}Our Services | BOOM EXPRESS{% endblock %}
+{% block meta_description %}Explore BOOM EXPRESS technical services, including tiling, marble, cladding, carpentry, painting, ceilings, electrical, plumbing and general maintenance.{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">What We Do</span>
+        <h1>Our Services</h1>
+        <p class="breadcrumb"><a href="/">Home</a> / Services</p>
+    </div>
+</section>
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">Technical Expertise</span>
+                <h2 class="section-title">Solutions with <span>Precision.</span></h2>
+                <p class="section-description">Explore our technical service categories.</p>
+            </div>
+        </div>
+        <div class="service-grid">
+            {% for service in services %}
+            <article class="service-card reveal-up">
+                <span class="service-number">{% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}</span>
+                <div class="service-icon">{{ service.icon|default:"◈" }}</div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.short_description }}</p>
+                <a class="service-link" href="{% url 'core:service_detail' service.slug %}">Discover More ↗</a>
+            </article>
+            {% empty %}
+            <p>Our services will be published here shortly.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Have a specific <span>requirement?</span></h2>
+        <p class="section-description" style="margin:20px 0 30px">Contact us to discuss your project.</p>
+        <a href="{% url 'core:contact' %}" class="btn">Contact Our Team ↗</a>
+    </div>
+</section>
+{% endblock %}

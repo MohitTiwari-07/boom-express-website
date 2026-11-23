@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+{% block title %}About BOOM EXPRESS | Technical Services{% endblock %}
+{% block meta_description %}Learn about BOOM EXPRESS Technical Services L.L.C. and its approach to flooring, finishing, electrical, plumbing and property maintenance works in Dubai, UAE.{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">Who We Are</span>
+        <h1>About BOOM EXPRESS</h1>
+        <p class="breadcrumb"><a href="/">Home</a> / About</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container about-grid">
+        <div class="about-visual reveal-left"></div>
+        <div class="about-content reveal-right">
+            <span class="eyebrow">Our Philosophy</span>
+            <h2 class="section-title">Excellence in Every <span>Detail.</span></h2>
+            <p class="section-description">
+                BOOM EXPRESS is focused on professional technical services and
+                property improvement solutions. We believe quality begins
+                with understanding requirements and continues through
+                careful planning and execution.
+            </p>
+            <p class="about-note">
+                Our approach is built around precision, quality and
+                professional commitment.
+            </p>
+            <a href="{% url 'core:services' %}" class="btn">Explore Services ↗</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark">
+    <div class="container">
+        <span class="eyebrow">Our Values</span>
+        <h2 class="section-title" style="margin:20px 0 45px">
+            What Guides <span>Our Work.</span>
+        </h2>
+        <div class="why-list">
+            <article class="why-item"><span>01</span><div><h3>Quality</h3><p>We place importance on workmanship and attention to detail.</p></div></article>
+            <article class="why-item"><span>02</span><div><h3>Integrity</h3><p>Clear communication and a responsible approach to every requirement.</p></div></article>
+            <article class="why-item"><span>03</span><div><h3>Professionalism</h3><p>A considered approach to coordination and execution.</p></div></article>
+        </div>
+    </div>
+</section>
+{% endblock %}

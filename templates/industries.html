@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+{% block title %}Industries | BOOM EXPRESS{% endblock %}
+{% block meta_description %}Discover how BOOM EXPRESS approaches technical and interior finishing requirements for residential, commercial, hospitality, retail and office spaces.{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">Our Expertise</span>
+        <h1>Industries We Serve</h1>
+        <p class="breadcrumb"><a href="/">Home</a> / Industries</p>
+    </div>
+</section>
+<section class="section section-light">
+    <div class="container">
+        <span class="eyebrow">Industry Sectors</span>
+        <h2 class="section-title" style="margin:20px 0 45px">Understanding Different <span>Environments.</span></h2>
+        <div class="industries-grid">
+            {% for industry in industries %}
+            <article class="industry-card reveal-up">
+                <span>{% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}</span>
+                <h3>{{ industry.title }}</h3>
+                <p>{{ industry.description }}</p>
+                {% if industry.image %}<img src="{{ industry.image.url }}" alt="{{ industry.title }}" style="margin-top:20px">{% endif %}
+            </article>
+            {% empty %}
+            <p>Industry information will be published here soon.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

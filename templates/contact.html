@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+{% block title %}Contact BOOM EXPRESS | Get in Touch{% endblock %}
+{% block meta_description %}Contact BOOM EXPRESS Technical Services L.L.C. in Oud Metha, Dubai, for enquiries about flooring, finishing, electrical, plumbing and maintenance works.{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">Start a Conversation</span>
+        <h1>Contact Us</h1>
+        <p class="breadcrumb"><a href="/">Home</a> / Contact</p>
+    </div>
+</section>
+<section class="section contact-section">
+    <div class="container contact-grid">
+        <div class="contact-copy">
+            <span class="eyebrow">Let's Connect</span>
+            <h2 class="section-title">Tell Us About Your <span>Project.</span></h2>
+            <p>Share your technical requirements or project enquiry using the form. Our team can review the information you provide.</p>
+
+            <div class="company-contact-details">
+                {% if company_profile.phone %}
+                <div class="company-contact-item">
+                    <span class="contact-detail-label">CALL US</span>
+                    <a href="tel:{{ company_profile.phone|cut:' ' }}">{{ company_profile.phone }}</a>
+                </div>
+                {% endif %}
+                {% if company_profile.email %}
+                <div class="company-contact-item">
+                    <span class="contact-detail-label">EMAIL US</span>
+                    <a href="mailto:{{ company_profile.email }}">{{ company_profile.email }}</a>
+                </div>
+                {% endif %}
+                {% if company_profile.address %}
+                <div class="company-contact-item">
+                    <span class="contact-detail-label">OUR OFFICE</span>
+                    <p>{{ company_profile.address }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}<li>{{ message }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+            <form method="POST" action="{% url 'core:submit_enquiry' %}" class="contact-form">
+                {% csrf_token %}
+                {{ form.website }}
+                {% for field in form %}
+                    {% if field.name != "website" %}
+                    <div class="form-field {% if field.name == 'message' %}full{% endif %}">
+                        <label for="{{ field.id_for_label }}">{{ field.label|upper }}</label>
+                        {{ field }}
+                        {% for error in field.errors %}<span class="form-errors">{{ error }}</span>{% endfor %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="form-field full">
+                    <button type="submit" class="btn">Send Enquiry ↗</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Frequently Asked Questions | BOOM EXPRESS Technical Services{% endblock %}
+{% block meta_description %}Find answers about BOOM EXPRESS technical services, project enquiries, pricing and maintenance requirements in Dubai, UAE.{% endblock %}
+
+{% block extra_css %}
+<style>
+.faq-section { padding-top: 64px; }
+.faq-list { max-width: 900px; margin: 0 auto; }
+.faq-item {
+    border-bottom: 1px solid rgba(190, 160, 105, .28);
+    padding: 0;
+}
+.faq-item:first-child { border-top: 1px solid rgba(190, 160, 105, .28); }
+.faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 23px 48px 23px 4px;
+    position: relative;
+    color: inherit;
+    font-family: Manrope, sans-serif;
+    font-weight: 700;
+    line-height: 1.55;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 8px;
+    top: 17px;
+    font-size: 26px;
+    color: #c5a36a;
+}
+.faq-item[open] summary::after { content: "−"; }
+.faq-answer {
+    padding: 0 38px 22px 4px;
+    line-height: 1.8;
+    opacity: .86;
+}
+.faq-empty {
+    text-align: center;
+    padding: 35px 20px;
+}
+.faq-contact {
+    text-align: center;
+    margin-top: 48px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">Helpful Information</span>
+        <h1>Frequently Asked Questions</h1>
+        <p class="breadcrumb">
+            <a href="{% url 'core:home' %}">Home</a> / FAQs
+        </p>
+    </div>
+</section>
+
+<section class="section section-dark faq-section">
+    <div class="container">
+        <div class="faq-list">
+            {% for faq in faqs %}
+            <details class="faq-item">
+                <summary>{{ faq.question }}</summary>
+                <div class="faq-answer">
+                    {{ faq.answer|linebreaks }}
+                    {% if faq.service %}
+                    <p><a href="{% url 'core:service_detail' faq.service.slug %}">Explore {{ faq.service.title }} ↗</a></p>
+                    {% endif %}
+                </div>
+            </details>
+            {% empty %}
+            <div class="faq-empty">
+                <h2>How Can We Help?</h2>
+                <p>For information about our services, project requirements or an enquiry, please contact our team directly.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="faq-contact">
+            <h2>Still Have a Question?</h2>
+            <p>Share your requirements with BOOM EXPRESS Technical Services.</p>
+            <a href="{% url 'core:contact' %}" class="btn">Contact Us ↗</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% block title %}Insights & Articles | BOOM EXPRESS Technical Services{% endblock %}
+{% block meta_description %}Explore practical insights from BOOM EXPRESS on floor tiles, marble, porcelain, ceilings, lighting, partitions and property improvement works in Dubai.{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">Knowledge & Insights</span>
+        <h1>Our Insights</h1>
+        <p class="breadcrumb"><a href="/">Home</a> / Insights</p>
+    </div>
+</section>
+<section class="section section-dark">
+    <div class="container">
+        <div class="blog-grid">
+            {% for post in posts %}
+            <article class="blog-card reveal-up">
+                {% if post.cover_image %}
+                <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="blog-image">
+                {% else %}
+                <div class="blog-image"></div>
+                {% endif %}
+                <div class="blog-info">
+                    <span class="blog-date">{{ post.published_at|date:"d M Y" }}</span>
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.excerpt }}</p>
+                    <a class="service-link" href="{% url 'core:blog_detail' post.slug %}">Read Article ↗</a>
+                </div>
+            </article>
+            {% empty %}
+            <div class="portfolio-empty"><span class="empty-index">02 / KNOWLEDGE</span><h3>Insights Coming Soon.</h3><p>We are preparing useful articles on materials, interior finishes and technical works. Check back soon.</p></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,565 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}BOOM EXPRESS | Premium Technical Services{% endblock %}
+
+{% block meta_description %}
+BOOM EXPRESS provides professional technical services, building maintenance, flooring, marble, electrical, plumbing and property improvement solutions.
+{% endblock %}
+
+{% block extra_head %}
+<link rel="preload" as="image" href="{% static 'images/hero-architecture.jpg' %}" fetchpriority="high">
+{% endblock %}
+
+{% block content %}
+
+<!-- PREMIUM CINEMATIC HERO -->
+<section class="hero hero-premium" id="home">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+           poster="{% static 'images/hero-architecture.jpg' %}">
+        <source src="{% static 'videos/hero.mp4' %}" type="video/mp4">
+    </video>
+
+    <div class="hero-overlay"></div>
+    <div class="hero-premium-glow"></div>
+
+    <div class="container hero-premium-container">
+        <div class="hero-content reveal-up">
+            <div class="hero-kicker">
+                <span class="hero-kicker-line"></span>
+                BOOM EXPRESS &nbsp;|&nbsp; PREMIUM TECHNICAL SERVICES
+            </div>
+
+            <h1 class="hero-premium-title">
+                Building Better.
+                <span>Creating Excellence.</span>
+            </h1>
+
+            <p class="hero-description">
+                Professional technical solutions and property improvement
+                services, delivered with precision, thoughtful execution
+                and attention to every detail.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#services" class="btn">
+                    Explore Our Services <span>&rarr;</span>
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    Discuss Your Project
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-bottom">
+        <span>PRECISION &nbsp;|&nbsp; QUALITY &nbsp;|&nbsp; COMMITMENT</span>
+        <a href="#about" class="scroll-indicator">SCROLL TO EXPLORE &darr;</a>
+    </div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="section" id="about">
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div class="about-visual reveal-left"></div>
+
+            <div class="about-content reveal-right">
+
+                <span class="eyebrow">Who We Are</span>
+
+                <h2 class="section-title">
+                    Beyond Services.
+                    <span>Built on Excellence.</span>
+                </h2>
+
+                <p class="section-description">
+                    At BOOM EXPRESS, we believe every space deserves thoughtful
+                    execution and professional care. Our approach combines
+                    technical expertise, attention to detail and a commitment
+                    to delivering quality work.
+                </p>
+
+                <div class="about-note">
+                    Every detail matters. Every project deserves our best.
+                </div>
+
+                <a href="{% url 'core:about' %}" class="btn">
+                    Discover BOOM EXPRESS <span>↗</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SERVICES -->
+<section class="section section-dark" id="services">
+    <div class="container">
+
+        <div class="section-heading reveal-up">
+
+            <div>
+                <span class="eyebrow">What We Do</span>
+
+                <h2 class="section-title">
+                    Our Technical <span>Services.</span>
+                </h2>
+
+                <p class="section-description">
+                    Explore our range of technical and property improvement
+                    services, designed around quality workmanship and
+                    professional execution.
+                </p>
+            </div>
+
+            <a href="{% url 'core:services' %}" class="btn btn-outline">
+                All Services <span>↗</span>
+            </a>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            {% for service in services %}
+
+            <article class="service-card reveal-up">
+
+                <span class="service-number">
+                    {% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}
+                </span>
+
+                <div class="service-icon">
+                    {% if service.icon %}
+                        {{ service.icon }}
+                    {% else %}
+                        &#9672;
+                    {% endif %}
+                </div>
+
+                <h3>{{ service.title }}</h3>
+
+                <p>{{ service.short_description }}</p>
+
+                <a href="{% url 'core:service_detail' service.slug %}"
+                   class="service-link">
+                    Explore Service &#8599;
+                </a>
+
+            </article>
+
+            {% empty %}
+
+            <div class="service-card">
+                <h3>Services Coming Soon</h3>
+                <p>Our service information will be available shortly.</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- INDUSTRIES -->
+<section class="section section-light" id="industries">
+    <div class="container">
+
+        <div class="section-heading reveal-up">
+
+            <div>
+                <span class="eyebrow">Where We Work</span>
+
+                <h2 class="section-title">
+                    Industries We <span>Serve.</span>
+                </h2>
+
+                <p class="section-description">
+                    Discover the sectors and environments represented
+                    in our service portfolio.
+                </p>
+            </div>
+
+            <a href="{% url 'core:industries' %}" class="btn">
+                Explore Industries <span>↗</span>
+            </a>
+
+        </div>
+
+
+        <div class="industries-grid">
+
+            {% for industry in industries %}
+
+            <article class="industry-card reveal-up">
+
+                <span>
+                    {% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }}
+                </span>
+
+                <h3>{{ industry.title }}</h3>
+
+                <p>{{ industry.description }}</p>
+
+            </article>
+
+            {% empty %}
+
+            <article class="industry-card">
+                <h3>Industries Coming Soon</h3>
+                <p>Industry information will be published here.</p>
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- WHY CHOOSE US -->
+<section class="section section-dark" id="why-us">
+    <div class="container">
+
+        <div class="why-grid">
+
+            <div class="reveal-left">
+
+                <span class="eyebrow">The BOOM EXPRESS Difference</span>
+
+                <h2 class="section-title" style="margin: 22px 0;">
+                    A Better Standard
+                    <span>of Execution.</span>
+                </h2>
+
+                <p class="section-description">
+                    Our philosophy is simple: understand the requirement,
+                    plan carefully and execute with attention to detail.
+                </p>
+
+            </div>
+
+
+            <div class="why-list reveal-right">
+
+                <article class="why-item">
+                    <span>01</span>
+                    <div>
+                        <h3>Quality Focus</h3>
+                        <p>
+                            Attention to workmanship, materials and
+                            finishing throughout the project.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="why-item">
+                    <span>02</span>
+                    <div>
+                        <h3>Technical Approach</h3>
+                        <p>
+                            Practical solutions based on project
+                            requirements and technical considerations.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="why-item">
+                    <span>03</span>
+                    <div>
+                        <h3>Attention to Detail</h3>
+                        <p>
+                            Careful consideration of the details
+                            that contribute to a quality finish.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="why-item">
+                    <span>04</span>
+                    <div>
+                        <h3>Professional Commitment</h3>
+                        <p>
+                            A focused approach to communication,
+                            coordination and project execution.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- PROJECTS -->
+
+<!-- BOOM EXPRESS TEAM -->
+<section class="section boom-team-section">
+    <div class="container boom-team-grid">
+<div class="boom-team-copy">
+            <span class="eyebrow">The People Behind The Work</span>
+            <h2 class="section-title">Professional Service.<br><span>Quality That Shows.</span></h2>
+            <p class="section-description">
+                A professional approach to technical services, maintenance
+                and finishing works, with attention to detail at every stage.
+            </p>
+            <a href="{% url 'core:contact' %}" class="btn btn-outline">
+                Discuss Your Project <span>↗</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="projects">
+    <div class="container">
+
+        <div class="section-heading reveal-up">
+
+            <div>
+                <span class="eyebrow">Our Work</span>
+
+                <h2 class="section-title">
+                    Selected <span>Projects.</span>
+                </h2>
+
+                <p class="section-description">
+                    A look at the work and projects presented
+                    in our portfolio.
+                </p>
+            </div>
+
+            <a href="{% url 'core:projects' %}" class="btn btn-outline">
+                View All Projects <span>↗</span>
+            </a>
+
+        </div>
+
+
+        <div class="project-grid">
+
+            {% for project in projects %}
+
+            <article class="project-card reveal-up">
+
+                <div class="project-image-wrap">
+                    {% if project.image %}
+                    <div class="project-image"
+                         style="background-image: url('{{ project.image.url }}');">
+                    </div>
+                    {% else %}
+                    <div class="project-image"></div>
+                    {% endif %}
+                </div>
+
+                <div class="project-info">
+
+                    <span>{{ project.category|default:"Project" }}</span>
+
+                    <h3>{{ project.title }}</h3>
+
+                    <p class="section-description">
+                        {{ project.summary }}
+                    </p>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="portfolio-empty">
+                <span class="empty-index">01 / PORTFOLIO</span>
+                <h3>Our Portfolio Is Taking Shape.</h3>
+                <p>Our project portfolio will be updated soon. Please revisit this page for future updates.</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- BLOG / INSIGHTS -->
+<section class="section section-dark" id="insights">
+    <div class="container">
+
+        <div class="section-heading reveal-up">
+
+            <div>
+                <span class="eyebrow">Knowledge & Insights</span>
+
+                <h2 class="section-title">
+                    Ideas That <span>Inspire.</span>
+                </h2>
+            </div>
+
+            <a href="{% url 'core:blog_list' %}" class="btn btn-outline">
+                Explore Insights <span>↗</span>
+            </a>
+
+        </div>
+
+
+        <div class="blog-grid">
+
+            {% for post in latest_blogs %}
+
+            <article class="blog-card reveal-up">
+
+                {% if post.cover_image %}
+                <div class="blog-image"
+                     style="background-image: url('{{ post.cover_image.url }}');">
+                </div>
+                {% else %}
+                <div class="blog-image"></div>
+                {% endif %}
+
+                <div class="blog-info">
+
+                    <span class="blog-date">
+                        {{ post.published_at|date:"d M Y" }}
+                    </span>
+
+                    <h3>{{ post.title }}</h3>
+
+                    <p>{{ post.excerpt }}</p>
+
+                    <a href="{% url 'core:blog_detail' post.slug %}"
+                       class="service-link">
+                        Read Article ↗
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="portfolio-empty">
+                <span class="empty-index">02 / KNOWLEDGE</span>
+                <h3>Insights Coming Soon.</h3>
+                <p>We are preparing useful articles on materials, interior finishes and technical works. Check back soon.</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+    <div class="container">
+
+        <div class="contact-grid">
+
+            <div class="contact-copy reveal-left">
+
+                <span class="eyebrow">Start a Conversation</span>
+
+                <h2 class="section-title">
+                    Let's Build
+                    <span>Something Better.</span>
+                </h2>
+
+                <p>
+                    Have a project or technical requirement?
+                    Share your details and our team can review
+                    your enquiry.
+                </p>
+
+            </div>
+
+
+            <div class="reveal-right">
+
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <form method="POST"
+                      action="{% url 'core:submit_enquiry' %}"
+                      class="contact-form">
+
+                    {% csrf_token %}
+
+                    {{ enquiry_form.website }}
+
+                    <div class="form-field">
+                        <label for="id_name">YOUR NAME *</label>
+                        {{ enquiry_form.name }}
+                        {% for error in enquiry_form.name.errors %}
+                        <span class="form-errors">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="id_email">EMAIL ADDRESS *</label>
+                        {{ enquiry_form.email }}
+                        {% for error in enquiry_form.email.errors %}
+                        <span class="form-errors">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="id_phone">PHONE NUMBER</label>
+                        {{ enquiry_form.phone }}
+                        {% for error in enquiry_form.phone.errors %}
+                        <span class="form-errors">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="id_subject">SUBJECT</label>
+                        {{ enquiry_form.subject }}
+                        {% for error in enquiry_form.subject.errors %}
+                        <span class="form-errors">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-field full">
+                        <label for="id_message">YOUR MESSAGE *</label>
+                        {{ enquiry_form.message }}
+                        {% for error in enquiry_form.message.errors %}
+                        <span class="form-errors">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-field full">
+                        <button type="submit" class="btn">
+                            Send Enquiry <span>↗</span>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+﻿{% extends "base.html" %}
+{% load blog_format %}
+
+{% block title %}{{ project.title }} | BOOM EXPRESS{% endblock %}
+{% block meta_description %}{{ project.summary }}{% endblock %}
+
+{% block content %}
+<section class="page-hero project-detail-hero">
+    <div class="container">
+        <span class="eyebrow">BOOM EXPRESS Portfolio / Concept Showcase</span>
+        <h1>{{ project.title }}</h1>
+        <p class="breadcrumb">
+            <a href="/">Home</a> /
+            <a href="{% url 'core:projects' %}">Projects</a> /
+            {{ project.title }}
+        </p>
+    </div>
+</section>
+
+<section class="section project-detail-section">
+    <div class="container project-detail-container">
+        <article class="project-detail-card">
+
+            <div class="project-detail-meta">
+                <span class="project-category-label">{{ project.category|default:"Project Showcase" }}</span>
+                {% if project.location %}
+                    <span class="project-location-label">{{ project.location }}</span>
+                {% endif %}
+            </div>
+
+            {% if project.image %}
+                <img class="project-detail-image"
+                     src="{{ project.image.url }}"
+                     alt="{{ project.title }}">
+            {% endif %}
+
+            <div class="project-concept-note">
+                <span class="concept-note-mark">N</span>
+                <div>
+                    <strong>Concept Showcase</strong>
+                    <p>Illustrative design concept. Not represented as a completed client project.</p>
+                </div>
+            </div>
+
+            <h2 class="project-detail-title">{{ project.title }}</h2>
+            <p class="project-detail-summary">{{ project.summary }}</p>
+
+            {% if project.description %}
+                <div class="project-detail-content article-reading">
+                    {{ project.description|format_article }}
+                </div>
+            {% endif %}
+
+            <div class="project-detail-footer">
+                <a href="{% url 'core:projects' %}" class="btn btn-outline">← Back to Projects</a>
+                <a href="{% url 'core:contact' %}" class="project-enquiry-link">Discuss Your Project ↗</a>
+            </div>
+
+        </article>
+    </div>
+</section>
+{% endblock %}

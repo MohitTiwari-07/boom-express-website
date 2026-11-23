@@ -1,0 +1,43 @@
+﻿{% extends "base.html" %}
+{% load blog_format %}
+{% block title %}{{ post.meta_title|default:post.title }} | BOOM EXPRESS{% endblock %}
+{% block meta_description %}{{ post.meta_description|default:post.excerpt }}{% endblock %}
+
+{% block content %}
+<section class="page-hero article-hero">
+    <div class="container">
+        <span class="eyebrow">BOOM EXPRESS Insights / Knowledge & Ideas</span>
+        <h1>{{ post.title }}</h1>
+        <p class="breadcrumb">
+            <a href="/">Home</a> / <a href="{% url 'core:blog_list' %}">Insights</a> / Article
+        </p>
+    </div>
+</section>
+
+<section class="section article-section">
+    <div class="container article-container">
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="article-category">INSIGHTS & EXPERTISE</span>
+                <span class="article-date">{{ post.published_at|date:"d M Y" }}</span>
+            </div>
+
+            {% if post.cover_image %}
+                <img class="article-cover" src="{{ post.cover_image.url }}" alt="{{ post.title }}">
+            {% endif %}
+
+            <h2 class="article-title">{{ post.title }}</h2>
+            <p class="article-excerpt">{{ post.excerpt }}</p>
+
+            <div class="article-reading">
+                {{ post.content|format_article }}
+            </div>
+
+            <div class="article-footer">
+                <a href="{% url 'core:blog_list' %}" class="btn btn-outline">← Back to Insights</a>
+                <a href="{% url 'core:contact' %}" class="article-contact-link">Discuss Your Project ↗</a>
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}

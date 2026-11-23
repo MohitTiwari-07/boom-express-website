@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}{{ service.meta_title|default:service.title }} | BOOM EXPRESS{% endblock %}
+{% block meta_description %}{{ service.meta_description|default:service.short_description }}{% endblock %}
+
+{% block content %}
+<section class="service-detail-hero">
+    <div class="container">
+        <div class="service-detail-breadcrumb">
+            <a href="/">Home</a><span>/</span>
+            <a href="{% url 'core:services' %}">Services</a><span>/</span>
+            <span>{{ service.title }}</span>
+        </div>
+        <div class="service-detail-hero-content">
+            <span class="eyebrow">BOOM EXPRESS TECHNICAL SERVICES</span>
+            <h1>{{ service.title }}</h1>
+            <p>{{ service.short_description }}</p>
+            <a href="{% url 'core:contact' %}" class="btn">Discuss Your Requirement</a>
+        </div>
+        <div class="service-detail-hero-number">BOOM EXPRESS</div>
+    </div>
+</section>
+
+<section class="section service-detail-main">
+    <div class="container service-detail-layout">
+        <div class="service-detail-image">
+            {% if service.image %}
+                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+            {% else %}
+                <div class="service-detail-image-placeholder">
+                    <span>{{ service.icon|default:"N" }}</span>
+                    <p>BOOM EXPRESS Technical Services</p>
+                </div>
+            {% endif %}
+            <div class="service-image-caption">PRECISION. QUALITY. COMMITMENT.</div>
+        </div>
+
+        <div class="service-detail-copy">
+            <span class="eyebrow">OUR EXPERTISE</span>
+            <h2>Professional Solutions.<br><span>Thoughtful Execution.</span></h2>
+            <p class="service-detail-intro">{{ service.short_description }}</p>
+            <div class="service-detail-description">
+                {% if service.description %}
+                    {{ service.description|linebreaks }}
+                {% else %}
+                    <p>Contact our team to discuss your requirements for {{ service.title }}.</p>
+                {% endif %}
+            </div>
+            <a href="{% url 'core:contact' %}" class="btn">Enquire About This Service</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark service-related-section">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">EXPLORE MORE</span>
+                <h2 class="section-title">Explore All <span>Other Services.</span></h2>
+                <p class="section-description">Discover all {{ related_services|length }} other technical services offered by BOOM EXPRESS.</p>
+            </div>
+            <a href="{% url 'core:services' %}" class="btn btn-outline">View All Services</a>
+        </div>
+
+        <div class="service-grid service-related-grid">
+            {% for item in related_services %}
+            <article class="service-card">
+                <span class="service-number">0{{ forloop.counter }}</span>
+                <div class="service-icon">{{ item.icon|default:"?" }}</div>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.short_description }}</p>
+                <a class="service-link" href="{% url 'core:service_detail' item.slug %}">Discover More &rarr;</a>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="service-detail-cta">
+    <div class="container">
+        <span class="eyebrow">LET'S WORK TOGETHER</span>
+        <h2>Have a Project in <span>Mind?</span></h2>
+        <p>Tell us what you need. Our team is ready to discuss your technical service requirements.</p>
+        <a href="{% url 'core:contact' %}" class="btn">Contact BOOM EXPRESS</a>
+    </div>
+</section>
+{% endblock %}

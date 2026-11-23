@@ -1,0 +1,44 @@
+﻿
+{% extends "base.html" %}
+{% block title %}Projects | BOOM EXPRESS{% endblock %}
+{% block meta_description %}View illustrative BOOM EXPRESS concept showcases featuring coordinated ideas for villa interiors, kitchen finishes and contemporary workspaces.{% endblock %}
+{% block content %}
+<section class="page-hero projects-page-hero">
+    <div class="container">
+        <span class="eyebrow">Our Portfolio</span>
+        <h1>Selected Projects</h1>
+        <p class="breadcrumb"><a href="/">Home</a> / Projects</p>
+    </div>
+</section>
+<section class="section section-dark projects-list-section">
+    <div class="container">
+        <span class="eyebrow">Selected Work</span>
+        <h2 class="section-title projects-section-title">Our <span>Projects.</span></h2>
+        <div class="project-grid">
+            {% for project in projects %}
+            <article class="project-card reveal-up">
+                <div class="project-image-wrap">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+                    {% else %}
+                    <div class="project-image"></div>
+                    {% endif %}
+                </div>
+                <div class="project-info">
+                    <span>{{ project.category }}{% if project.location %} · {{ project.location }}{% endif %}</span>
+                    <h3>{{ project.title }}</h3>
+                    <a class="service-link" href="{% url 'core:project_detail' project.slug %}">
+    View Project →
+</a>
+
+                    <p class="section-description">{{ project.summary }}</p>
+                </div>
+            </article>
+            {% empty %}
+            <div class="portfolio-empty"><span class="empty-index">01 / PORTFOLIO</span><h3>Our Portfolio Is Taking Shape.</h3><p>Our project portfolio will be updated soon. Please revisit this page for future updates.</p></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
